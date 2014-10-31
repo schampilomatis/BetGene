@@ -1,0 +1,14 @@
+<template name="matchPage">
+		<div>
+			<p>{{match.hometeam}} - {{match.awayteam}} </p>
+			<p>-posoi pontaran se kathe simeio</p>
+			<p>-poioi pontaran</p>
+
+			{{#with comments}}
+				{{> commentsList}}
+			{{/with}}
+
+		</div>
+
+
+</template>
