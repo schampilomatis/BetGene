@@ -1,14 +1,58 @@
 <template name="matchPage">
-		<div>
-			<p>{{match.hometeam}} - {{match.awayteam}} </p>
-			<p>-posoi pontaran se kathe simeio</p>
-			<p>-poioi pontaran</p>
+	
+		<div class="container-fluid">
+			<div class="container-fluid">
+				{{#with match}}
+				<div class="panel panel-primary">
+					<div class="panel-heading">
+						<h4 class="panel-title">
+						<div class="row">
+						<span class="col-lg-6 col-md-6">{{hometeam}} </span>
+						<span class="col-lg-5 col-md-5">{{awayteam}} </span>
+						</div>
+						</h4>
+					</div>
 
-			{{#with comments}}
-				{{> commentsList}}
-			{{/with}}
+					<div class="panel-body">
+						
+						<ul class="list-group">
 
+							<li class="list-group-item">
+								Status: {{status}}
+							</li>
+
+
+							{{#unless betable}}
+							<li class="list-group-item">
+								<div class="row">
+									<span class="col-lg-6 col-md-6">{{homescore}} </span>
+									<span class="col-lg-5 col-md-5">{{awayscore}} </span>
+								</div>
+							</li>
+							{{/unless}}
+
+							<li class="list-group-item">
+							
+							{{> oddsTable}}
+							
+							
+							
+							
+							</li>
+
+
+						</ul>
+
+
+					</div>
+
+				</div>
+				{{/with}}
+			</div>
+			{{>commentsList comments}}
+				
+			{{>commentSubmit}}
 		</div>
 
-
+	
 </template>

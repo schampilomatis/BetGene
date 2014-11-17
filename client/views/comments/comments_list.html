@@ -1,7 +1,34 @@
 <template name="commentsList">
-		<div>
-			{{#each comments}}
-				{{> commentItem}}
-			{{/each}}
+		<div class="container-fluid text-center">
+			<div class="panel panel-primary">
+				<div class="panel-heading">
+					<h4 class="panel-title">Comments</h4>
+
+				</div>
+
+				<div class="panel-body">
+					<ul class="list-group">
+
+						{{#each .}}
+						<li class="list-group-item">
+							<div class="row">
+								
+								<div>
+									<div class="small">By: {{author}} on {{submitted}}</div> 
+									
+									<div>
+										{{body}}
+									</div>
+								</div>
+							</div>
+						</li>
+						{{/each}}
+
+					</ul>
+
+					
+				</div>
+
+			</div>
 		</div>
 </template>

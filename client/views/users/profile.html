@@ -1,0 +1,69 @@
+<template name="userProfile">
+	<div class="container-fluid">
+ 	    <div class="row">
+
+ 	    	<div class="user-details">
+ 	    	<div class="user-info-block">
+ 	    		<div class="user-heading">
+ 	    			<h1>{{currentUser.profile.username}}</h1>
+ 	    			<h3>{{currentUser.profile.score}}</h3>
+ 	    		</div>
+
+
+ 	    		<ul class="navigation">
+
+ 	    		<li>
+ 	    			<a data-toggle="tab" class="active" href="#info" >
+ 	    			<span class="glyphicon glyphicon-user"></span>
+ 	    			</a>
+ 	    		</li>
+
+
+
+
+ 	    		<li>
+ 	    			<a data-toggle="tab" href="#bets">
+ 	    			<span class="glyphicon glyphicon-euro"></span>
+ 	    			</a>
+ 	    		</li>
+
+
+ 	       		<li>
+ 	    			<a data-toggle="tab" href="#friends">
+ 	    			<span class="glyphicon glyphicon-heart-empty"></span>
+ 	    			</a>
+ 	    		</li>
+
+
+ 	    		</ul>
+
+				<div class="user-body">
+                    <div class="tab-content">
+                        <div id="info" class="tab-pane active">
+                            <h4>Account Information</h4>
+                        </div>
+                        <div id="bets" class="tab-pane">
+                            <h4>Bets</h4>
+                        </div>
+                        <div id="friends" class="tab-pane">
+                            <h4>Friends</h4>
+                        </div>
+                    </div>
+                </div>
+
+
+ 	    	</div>
+
+ 	    	</div>
+
+
+
+
+        	 
+        </div>
+   
+
+	</div>
+
+
+</template>

@@ -1,8 +1,12 @@
 <template name="matchList">
-		<div>
-			matchList
-			{{#each matches}}
-				{{> matchItem}}
-			{{/each}}
+	<div class="container-fluid">
+		<div class="panel-group" id="accordion">
+
+		{{#each matches}}
+			{{> matchItem}}
+		{{/each}}
 		</div>
+	</div>
+
+
 </template>

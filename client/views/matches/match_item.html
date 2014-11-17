@@ -1,6 +1,45 @@
 <template name="matchItem">
-		<div>
-			{{hometeam}} {{awayteam}} 
-			<a href="{{pathFor 'matchPage'}}">Info</a>
+
+	<div class="panel {{#if betable}}panel-primary{{else}}{{#if isEqual status "Fin"}} panel-success{{else}} panel-danger{{/if}}{{/if}}">
+		<div class="panel-heading">
+			<h4 class="panel-title">
+				<a data-toggle="collapse" data-parent="#accordion" href="#collapse{{_id._str}}">
+			
+
+				<div class="row">
+				<div class="col-lg-5 col-md-5">{{hometeam}} </div>
+				<div class="col-lg-2 col-md-2"> {{homescore}} - {{awayscore}}</div> 
+				<div class="col-lg-5 col-md-5"> {{awayteam}}</div> 
+				</div>
+			
+				</a>
+			</h4>
+	
 		</div>
+
+
+
+		<div id="collapse{{_id._str}}" class="panel-collapse collapse">
+			<div class="panel-body">
+				<a type="button" class="btn btn-default" href="{{pathFor 'matchPage' _id=this._id._str}}">Match Page</a>
+
+				{{#if betable}}
+					{{#with matchBet _id._str}}
+						You have betted {{stake}}
+					{{/with}}
+					<div class="btn-group">
+						<button type="button" class="btn btn-danger betbutton" stake="1">Bet 1</button>
+						<button type="button" class="btn btn-danger betbutton" stake="X">Bet X</button>
+						<button type="button" class="btn btn-danger betbutton" stake="2">Bet 2</button>
+					</div>
+					
+				{{/if}}
+				<small>{{time}}</small>
+			</div>
+
+		</div>
+	</div>
+		
 </template>
+
+

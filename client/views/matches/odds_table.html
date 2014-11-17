@@ -1,0 +1,40 @@
+<template name="oddsTable">
+
+<table class="table table-bordered">
+	<thead>
+		<tr>
+			<th>Bets - Odds</th>
+			<th>Hometeam</th>
+			<th>Draw</th>
+			<th>Awayteam</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>Current Bets</td>
+			<td>{{bets.hometeam}}</td>
+			<td>{{bets.draw}}</td>
+			<td>{{bets.awayteam}}</td>
+		</tr>
+		{{#with betOdds bets}}
+		<tr>
+			<td> Current Odds</td>
+			<td> {{home}}</td>
+			<td> {{draw}}</td>
+			<td> {{away}}</td>
+		</tr>
+		{{/with}}
+		{{#with betOdds bets}}
+		<tr>
+			<td> Odds for Home</td>
+			<td> {{home}}</td>
+			<td> {{draw}}</td>
+			<td> {{away}}</td>
+		</tr>
+		{{/with}}
+
+
+	</tbody>
+
+</table>
+</template>

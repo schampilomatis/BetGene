@@ -7,8 +7,11 @@ meteor-platform
 autopublish
 insecure
 accounts-password
-accounts-facebook
-accounts-ui-bootstrap-3
 bootstrap-3
 iron:router
+meteorhacks:npm
+
+
+npm-container
+percolatestudio:synced-cron
 
