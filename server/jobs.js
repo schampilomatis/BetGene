@@ -95,11 +95,11 @@ SyncedCron.add({
   	job: checkAndValidateMatches
 });
 
-SyncedCron.add({
+/*SyncedCron.add({
   	name: 'Get matces of the week',
   	schedule: function(parser) {
     	// parser is a later.parse object
     	return parser.text('on the first day of the week');
   	}, 
   	job: getMatchesOfWeek
-});
+});*/
