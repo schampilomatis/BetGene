@@ -6,6 +6,8 @@ Template.commentSubmit.events({
 			matchId: new Meteor.Collection.ObjectID(Session.get('currentMatchId'))
 		};
 
+		$('#bodytext').val("");
+
 		Meteor.call('comment', comment, function(error, commentId) {
 			
 

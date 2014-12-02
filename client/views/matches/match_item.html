@@ -1,15 +1,18 @@
 <template name="matchItem">
+	<div class='container-fluid'>
 
-	<div class="panel {{#if betable}}panel-primary{{else}}{{#if isEqual status "Fin"}} panel-success{{else}} panel-danger{{/if}}{{/if}}">
+	<div class='container-fluid col-lg-10 col-md-10'>
+	<div class="panel {{#if betable}}panel-primary{{else}}{{#if isEqual status "Fin"}} panel-success{{else}} panel-danger{{/if}}{{/if}} ">
+			
 		<div class="panel-heading">
 			<h4 class="panel-title">
 				<a data-toggle="collapse" data-parent="#accordion" href="#collapse{{_id._str}}">
 			
 
 				<div class="row">
-				<div class="col-lg-5 col-md-5">{{hometeam}} </div>
-				<div class="col-lg-2 col-md-2"> {{homescore}} - {{awayscore}}</div> 
-				<div class="col-lg-5 col-md-5"> {{awayteam}}</div> 
+				<div class="col-lg-5 col-md-5"> {{hometeam}} </div>
+				<div class="col-lg-2 col-md-2 text-center"> {{homescore}} - {{awayscore}}</div> 
+				<div class="col-lg-5 col-md-5 text-right"> {{awayteam}}</div> 
 				</div>
 			
 				</a>
@@ -21,25 +24,49 @@
 
 		<div id="collapse{{_id._str}}" class="panel-collapse collapse">
 			<div class="panel-body">
-				<a type="button" class="btn btn-default" href="{{pathFor 'matchPage' _id=this._id._str}}">Match Page</a>
+
+				<div class='text-center'>
+					{{country}} - {{league}}
+				</div>
+				<div class='text-center'>
+					<a type="button" class="btn btn-default" href="{{pathFor 'matchPage' _id=this._id._str}}">Match Page</a>
 
 				{{#if betable}}
-					{{#with matchBet _id._str}}
-						You have betted {{stake}}
-					{{/with}}
+
+
+					{{#unless isBet _id._str}}
 					<div class="btn-group">
-						<button type="button" class="btn btn-danger betbutton" stake="1">Bet 1</button>
-						<button type="button" class="btn btn-danger betbutton" stake="X">Bet X</button>
-						<button type="button" class="btn btn-danger betbutton" stake="2">Bet 2</button>
+						<button type="button" class="btn btn-danger betbutton" stake="home">Bet 1</button>
+						<button type="button" class="btn btn-danger betbutton" stake="draw">Bet X</button>
+						<button type="button" class="btn btn-danger betbutton" stake="away">Bet 2</button>
 					</div>
-					
+					{{/unless}}
 				{{/if}}
-				<small>{{time}}</small>
+
+				</div>
+				<div class='text-right'>
+					<small>{{time}}</small>
+				</div>
 			</div>
 
 		</div>
 	</div>
+	</div>
+	<div class='col-lg-2 col-md-2'>
+		<span class="label label-default col-lg-6 col-md-6">
+		{{#with matchBet _id._str}}
+			{{stake}}
+		{{/with}}
+
 		
+		</span>
+		<span class="label label-default col-lg-6 col-md-6">
+			
+			{{betsum}}
+		</span>
+
+	</div>
+	</div>
 </template>
 
 

@@ -1,0 +1,11 @@
+<template name="countryFilter">
+	<div class='container-fluid'>
+		{{#each countries}}
+			<label class='checkbox countriesCheckbox' country='{{.}}'>
+				<input type='checkbox'  checked='true'>
+				{{.}}
+
+			</label>
+		{{/each}}
+	</div>
+</template>

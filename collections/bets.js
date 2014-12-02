@@ -29,14 +29,15 @@ Meteor.methods({
 
 		if (errors.length ===0){
 
-			if (betattributes.stake === "1"){
-				Matches.update(betattributes.matchId , {$inc : {"bets.hometeam": 1}});
-			}else if (betattributes.stake === "X"){
+			if (betattributes.stake === "home"){
+				Matches.update(betattributes.matchId , {$inc : {"bets.home": 1}});
+			}else if (betattributes.stake === "draw"){
 				Matches.update(betattributes.matchId , {$inc : {"bets.draw": 1}});
-			}else if (betattributes.stake === "2"){
-				Matches.update(betattributes.matchId , {$inc : {"bets.awayteam": 1}});
+			}else if (betattributes.stake === "away"){
+				Matches.update(betattributes.matchId , {$inc : {"bets.away": 1}});
 			}
 
+			Meteor.users.update({_id:user._id}, {$set: {'profile.score': user.profile.score - 1}});
 			Bets.insert(bet);
 			return {result : true};
 

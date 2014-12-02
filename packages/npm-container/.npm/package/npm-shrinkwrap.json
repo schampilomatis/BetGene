@@ -1,10 +1,10 @@
 {
   "dependencies": {
     "matchesparser": {
-      "version": "1.0.3",
+      "version": "1.0.10",
       "dependencies": {
         "jsdom": {
-          "version": "1.2.1",
+          "version": "1.3.1",
           "dependencies": {
             "contextify": {
               "version": "0.1.9",
@@ -21,7 +21,7 @@
               "version": "0.3.0"
             },
             "cssstyle": {
-              "version": "0.2.21"
+              "version": "0.2.22"
             },
             "htmlparser2": {
               "version": "3.8.2",
@@ -64,7 +64,7 @@
               "version": "1.2.0"
             },
             "request": {
-              "version": "2.48.0",
+              "version": "2.49.0",
               "dependencies": {
                 "bl": {
                   "version": "0.9.3",
@@ -89,7 +89,7 @@
                   }
                 },
                 "caseless": {
-                  "version": "0.7.0"
+                  "version": "0.8.0"
                 },
                 "forever-agent": {
                   "version": "0.5.2"
@@ -182,12 +182,12 @@
               "version": "1.6.0"
             },
             "browser-request": {
-              "version": "0.3.2"
+              "version": "0.3.3"
             }
           }
         },
         "mongodb": {
-          "version": "1.4.20",
+          "version": "1.4.22",
           "dependencies": {
             "bson": {
               "version": "0.2.15",

@@ -12,7 +12,7 @@ Template.matchItem.events({
 			}
 			console.log(result);
 
-		})
+		});
 		
 
 	}
@@ -26,10 +26,28 @@ Template.matchItem.helpers({
 
 	'matchBet': function(_id){
 		var bet = Bets.findOne({userid: Meteor.user()._id, matchid: new Meteor.Collection.ObjectID(_id)});
-
-		return bet;
+		if(bet){
+			return bet;
+		}else {
+			return {
+				stake: 'No bet'
+			}
+		}
 	},
 
+	'isBet': function(_id){
+		var bet = Bets.findOne({userid: Meteor.user()._id, matchid: new Meteor.Collection.ObjectID(_id)});
+		if (bet){
+			return true;
+		}else{
+			return false;
+		}
+	},
+
+	'betsum': function(){
+		matchbets = this.bets;
+		return matchbets.home + matchbets.draw + matchbets.away;
+	},
 
 	'isEqual' : function(a, b){
 		return a===b;

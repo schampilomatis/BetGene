@@ -1,7 +1,6 @@
 Meteor.startup(function () {
 
 	SyncedCron.start();
-
 });
 
 
@@ -9,12 +8,12 @@ Meteor.startup(function () {
 
 
 var getMatchesOfWeek = function(){
-	var MatchesParser = Meteor.npmRequire('matchesparser');
+	var Parser = Meteor.npmRequire('matchesparser');
 	var today = new Date();
 	var date = today.getDate();
 	var tommorow = new Date();
-	tommorow.setDate(date + 1);
-
+	tommorow.setDate(date +1);
+	MatchesParser = new Parser(process.env.MONGO_URL);
 	MatchesParser.parseweek(tommorow);
 
 
@@ -25,7 +24,8 @@ var getMatchesOfWeek = function(){
 var getMatchesOfDay = function(){
 
 	today = new Date();
-	var MatchesParser = Meteor.npmRequire('matchesparser');
+	var Parser = Meteor.npmRequire('matchesparser');
+	MatchesParser = new Parser(process.env.MONGO_URL);
 	MatchesParser.parse(today);
 
 	
@@ -37,22 +37,40 @@ var getMatchesOfDay = function(){
 
 	
 
+
 var checkAndValidateMatches = function(){
 
 	var validate = function(match){
 
 		bets = Bets.find({matchid: match._id}).fetch();
 		console.log(bets.length + " Bets found for match " + match._id)
+		
 		var odds = Meteor.helperFunctions.odds(match.bets);
+		
 		for (i in bets){
-			user = Meteor.users.find({_id: bets[i].userid});
-			var newscore;
-			if (bets[i].stake === match.result){
-				newscore = user.score + odds[bets[i].stake];
+
+			user = Meteor.users.findOne({_id: bets[i].userid});
+			var addedscore = 0; 
+			var successful;
+			if (bets[i].stake === match.result){				
+				addedscore =  odds[bets[i].stake];
+				successful = true;
+	
+			}else if ((odds.valid === false)||(odds[bets[i].stake] === 'N/A')){
+			
+				addedscore =  1;
+
 			}else{
-				newscore = user.score - odds[bets[i].stake];
+				successful = false;
 			}
-			Meteor.users.update({_id:user._id}, {$set: {'profile.score': newscore}});
+
+
+			if (addedscore>0){
+				Meteor.users.update({_id:user._id}, {$set: {'profile.score': user.profile.score + addedscore}});
+			}
+
+			Bets.update({_id: bets[i]._id}, {$set:{'evaluated':true, score: addedscore, 'successful': successful}});
+			
 		}
 
 		Matches.update({_id: match._id}, {$set: {evaluated: true}});
@@ -69,8 +87,6 @@ var checkAndValidateMatches = function(){
 		validate(matchesToValidate[i])
 	}
 }
-
-
 
 
 
@@ -95,11 +111,11 @@ SyncedCron.add({
   	job: checkAndValidateMatches
 });
 
-/*SyncedCron.add({
+SyncedCron.add({
   	name: 'Get matces of the week',
   	schedule: function(parser) {
     	// parser is a later.parse object
     	return parser.text('on the first day of the week');
   	}, 
   	job: getMatchesOfWeek
-});*/
+});

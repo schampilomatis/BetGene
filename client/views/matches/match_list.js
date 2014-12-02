@@ -1,7 +1,6 @@
 Template.matchList.helpers({
 	matches: function(){
 		var today = new Date();
-
 		var weekday = today.getDay();
 		var date = today.getDate();
 		var startdate = new Date();
@@ -14,9 +13,16 @@ Template.matchList.helpers({
 
 		enddate.setHours(23);
 		enddate.setMinutes(59);
+		preferences = Preferences.find({templateName:'matchList'}).fetch();
+		query = Meteor.helperFunctions.preferenceToQuery(preferences);
 
-		return Matches.find({time:{$gte: startdate, $lte:enddate}},{sort: {time: 1, hometeam: 1}});
+		query = $.extend(query, {time:{$gte: startdate, $lte:enddate}});
+		return Matches.find(query,{sort: {time: 1, hometeam: 1}});
 	}
 
 
 })
+
+Template.matchList.rendered = function(){
+	Session.set('currentTemplate', 'matchList');
+}

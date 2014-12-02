@@ -12,21 +12,13 @@
 	<tbody>
 		<tr>
 			<td>Current Bets</td>
-			<td>{{bets.hometeam}}</td>
+			<td>{{bets.home}}</td>
 			<td>{{bets.draw}}</td>
-			<td>{{bets.awayteam}}</td>
+			<td>{{bets.away}}</td>
 		</tr>
 		{{#with betOdds bets}}
 		<tr>
 			<td> Current Odds</td>
-			<td> {{home}}</td>
-			<td> {{draw}}</td>
-			<td> {{away}}</td>
-		</tr>
-		{{/with}}
-		{{#with betOdds bets}}
-		<tr>
-			<td> Odds for Home</td>
 			<td> {{home}}</td>
 			<td> {{draw}}</td>
 			<td> {{away}}</td>
